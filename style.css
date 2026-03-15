@@ -195,8 +195,10 @@ nav {
     flex: 1;
     max-width: 600px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 .hero-image {
     flex: 1;
     display: flex;
@@ -241,6 +243,7 @@ nav {
     line-height: 1.1;
     background: var(--gradient-main);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
 }
@@ -260,6 +263,7 @@ nav {
     display: flex;
     gap: 20px;
     justify-content: center;
+    
 }
 
 
@@ -399,6 +403,30 @@ nav {
 }
 
 
+@media (max-width: 1024px) {
+    .hero-container {
+        gap: 32px;
+    }
+
+    .hero-content {
+        max-width: 540px;
+    }
+
+    .hero-image .img-box {
+        width: clamp(240px, 36vw, 340px);
+        height: clamp(240px, 36vw, 340px);
+        padding: 10px;
+    }
+
+    .hero-image .img-box img {
+        transform: scale(1.15);
+    }
+
+    .hero h1 {
+        font-size: 3.4rem;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none; 
@@ -406,12 +434,20 @@ nav {
     
     .hero-container {
         flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 28px;
+    }
+
+    .hero-content {
         text-align: center;
     }
     
     .hero-image .img-box {
-        width: 300px;
-        height: 300px;
+        width: min(76vw, 320px);
+        height: min(76vw, 320px);
+        padding: 10px;
+        margin-top: 80px;
     }
     
     .hero h1 {
@@ -424,6 +460,8 @@ nav {
     
     .hero-btns {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 15px;
     }
     
@@ -443,6 +481,29 @@ nav {
     
     .education-box {
         text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 90px;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero h3 {
+        font-size: 1.2rem;
+    }
+
+    .hero p {
+        font-size: 0.98rem;
+    }
+
+    .hero-image .img-box {
+        width: min(82vw, 270px);
+        padding: 8px;
     }
 }
 
