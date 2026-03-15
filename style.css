@@ -248,7 +248,7 @@ nav {
     text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
 }
 
-.hero h3 span.typing-text {
+.hero h3 {
     color: var(--primary-color);
 }
 
