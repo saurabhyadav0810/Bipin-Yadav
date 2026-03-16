@@ -31,6 +31,72 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); 
 
+    // ── Roles orbit: position nodes in a circle & draw SVG arrows ──
+    const rolesOrbit = document.querySelector('.roles-orbit');
+    if (rolesOrbit) {
+        const nodes = rolesOrbit.querySelectorAll('.role-node');
+        const svg = rolesOrbit.querySelector('.roles-arrows');
+        const nodeCount = nodes.length;
+
+        function layoutOrbit() {
+            // Skip circular layout on very small screens
+            if (window.innerWidth <= 540) return;
+
+            const rect = rolesOrbit.getBoundingClientRect();
+            const w = rolesOrbit.offsetWidth;
+            const h = rolesOrbit.offsetHeight;
+            const cx = w / 2;
+            const cy = h / 2;
+            const radius = Math.min(cx, cy) * 0.72; // match the dashed ring
+
+            // SVG coordinate scale
+            const svgW = 600;
+            const svgH = 600;
+
+            // Clear old arrows
+            svg.querySelectorAll('line').forEach(l => l.remove());
+
+            nodes.forEach((node, i) => {
+                const angle = (2 * Math.PI * i / nodeCount) - Math.PI / 2; // start from top
+                const nx = cx + radius * Math.cos(angle);
+                const ny = cy + radius * Math.sin(angle);
+
+                // CSS position (% of container)
+                node.style.left = (nx / w * 100) + '%';
+                node.style.top = (ny / h * 100) + '%';
+
+                // SVG arrow from node toward center, stopping short
+                const svgNx = nx / w * svgW;
+                const svgNy = ny / h * svgH;
+                const svgCx = svgW / 2;
+                const svgCy = svgH / 2;
+
+                // Shorten both ends
+                const dx = svgCx - svgNx;
+                const dy = svgCy - svgNy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const ux = dx / dist;
+                const uy = dy / dist;
+                const startOffset = 62; // away from node edge
+                const endOffset = 80;   // away from center title
+                const x1 = svgNx + ux * startOffset;
+                const y1 = svgNy + uy * startOffset;
+                const x2 = svgCx - ux * endOffset;
+                const y2 = svgCy - uy * endOffset;
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                svg.appendChild(line);
+            });
+        }
+
+        layoutOrbit();
+        window.addEventListener('resize', layoutOrbit);
+    }
+
   
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');

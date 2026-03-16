@@ -6,29 +6,25 @@
 }
 
 :root {
-    
     --bg-primary: #0a0a0a;
     --bg-secondary: #111111;
     --bg-card: #1c1c1c;
-    
+
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --text-accent: #00f2ff;
-    
+
     --primary-color: #00f2ff;
     --secondary-color: #7000ff;
-    
+
     --gradient-main: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    
- 
+
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
-    
 
     --section-padding: 80px 20px;
     --container-width: 1200px;
-    
-    
+
     --transition-fast: 0.3s ease;
 }
 
@@ -230,14 +226,18 @@ nav {
 }
 
 .hero h3 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
+#experties{
+   margin-top: 25px;
+margin-bottom: 60px; 
+}
 .hero h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 800;
     margin: 10px 0;
     line-height: 1.1;
@@ -320,18 +320,392 @@ nav {
     font-weight: 600;
 }
 
+.about-dual-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+    gap: 150px;
+    align-items: start;
+    margin-top: 24px;
+}
+
+.timeline-panel,
+.roles-panel {
+    width: 100%;
+}
+
 .education-box {
-    margin: 20px 0;
-    padding: 20px;
-    background: var(--bg-card);
-    border-left: 4px solid var(--primary-color);
-    border-radius: 0 10px 10px 0;
+    margin: 24px auto;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    counter-reset: career-step;
+    text-align: left !important;
+}
+
+.education-box::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 242, 255, 0.2),
+        rgba(0, 242, 255, 0.85),
+        rgba(0, 242, 255, 0.2)
+    );
+    box-shadow: 0 0 18px rgba(0, 242, 255, 0.25);
+}
+
+.education-box .edu-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 14px;
+    margin-left: 56px;
+    padding: 16px 18px;
+    position: relative;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    height: 100%;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.education-box .edu-item::before {
+    counter-increment: career-step;
+    content: counter(career-step);
+    position: absolute;
+    left: -46px;
+    top: 16px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #001a1d;
+    background: #00f2ff;
+    box-shadow: 0 0 0 4px rgba(0, 242, 255, 0.18);
+}
+
+.education-box .edu-item:last-child {
+    margin-bottom: 0;
+}
+
+.education-box .edu-item + .edu-item {
+    margin-top: 0 !important;
+}
+
+.education-box .edu-item:hover {
+    transform: translateX(4px);
+    border-color: rgba(0, 242, 255, 0.45);
+    box-shadow: 0 10px 24px rgba(0, 242, 255, 0.12);
+}
+
+.education-box .edu-item h4 {
+    margin: 6px 0;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.education-box .edu-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
 }
 
 .edu-item .year {
-    color: var(--text-accent);
-    font-size: 0.9rem;
+    display: inline-block;
+    color: #7eeeff;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    border-radius: 999px;
+    background: rgba(0, 242, 255, 0.08);
+}
+
+/* ── Roles Panel: Circular Orbit Layout ── */
+.roles-panel {
+    margin-top: 38px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        radial-gradient(circle at center, rgba(0, 242, 255, 0.08), transparent 60%),
+        var(--bg-card);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    padding: 0;
+    overflow: hidden;
+}
+
+.roles-orbit {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Center title */
+.roles-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+}
+
+.roles-title {
+    margin: 0;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: 2px solid rgba(0, 242, 255, 0.45);
+    background: rgba(0, 242, 255, 0.12);
+    color: #c5faff;
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.18);
+}
+
+/* SVG arrows layer */
+.roles-arrows {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.roles-arrows line {
+    stroke: rgba(126, 238, 255, 0.45);
+    stroke-width: 1.5;
+    marker-end: url(#arrowhead);
+}
+
+/* Orbit ring decoration */
+.roles-orbit::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 72%;
+    height: 72%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 242, 255, 0.15);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Roles list – nodes are positioned absolutely via JS */
+.roles-list {
+    position: absolute;
+    inset: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.role-node {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.role-node span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.72rem;
+    line-height: 1.35;
     font-weight: 600;
+    color: var(--text-secondary);
+    background: linear-gradient(140deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    border-radius: 50%;
+    padding: 12px 8px;
+    transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.role-node:hover span {
+    border-color: rgba(0, 242, 255, 0.6);
+    color: #c5faff;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+    .about-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .timeline-panel {
+        max-width: 100%;
+    }
+
+    .education-box {
+        padding-top: 6px;
+        max-width: 100%;
+    }
+
+    .education-box::before {
+        left: 20px;
+    }
+
+    .education-box .edu-item {
+        margin-left: 44px;
+        max-width: 100% !important;
+        width: calc(100% - 44px) !important;
+        padding: 14px 14px;
+    }
+
+    .education-box .edu-item::before {
+        left: -34px;
+    }
+
+    .education-box .edu-item h4 {
+        font-size: 0.95rem;
+    }
+
+    .education-box .edu-item p {
+        font-size: 0.88rem;
+    }
+
+    .edu-item .year {
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 540px) {
+    /* On very small screens, fall back to a stacked list */
+    .roles-orbit {
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 20px 12px;
+    }
+
+    .roles-orbit::before {
+        display: none;
+    }
+
+    .roles-center {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
+
+    .roles-title {
+        font-size: 0.9rem;
+    }
+
+    .roles-arrows {
+        display: none;
+    }
+
+    .roles-list {
+        position: relative;
+        inset: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .role-node {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    .role-node span {
+        border-radius: 10px;
+        width: 100%;
+        height: auto;
+        padding: 12px 14px 12px 32px;
+        font-size: 0.85rem;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .role-node::before {
+        content: "\2192";
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7eeeff;
+        font-weight: 700;
+        font-size: 0.9rem;
+        z-index: 3;
+    }
+
+    .timeline-panel {
+        display: flex;
+        justify-content: center;
+    }
+
+    .education-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .education-box::before {
+        display: none;
+    }
+
+    .education-box .edu-item {
+        margin-left: 0;
+        padding: 14px;
+        text-align: center;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .education-box .edu-item::before {
+        display: none;
+    }
+
+    .education-box .edu-item h4,
+    .education-box .edu-item p {
+        text-align: center;
+    }
+
+    .edu-item .year {
+        margin-bottom: 8px;
+    }
 }
 
 .stats {
@@ -867,14 +1241,30 @@ footer p {
     }
 
     .education-box {
-        padding: 15px;
-        margin: 15px 0;
+        padding: 0;
+        margin: 16px auto;
         max-width: 100%;
         box-sizing: border-box;
     }
 
-    .edu-item {
+    .education-box .edu-item {
         max-width: 100% !important;
+        margin-left: 0;
+        padding: 13px 12px;
+        border-radius: 10px;
+    }
+
+    .education-box .edu-item::before,
+    .education-box::before {
+        display: none;
+    }
+
+    .education-box .edu-item:hover {
+        transform: none;
+    }
+
+    .roles-panel {
+        margin-top: 8px;
     }
 
     .stats {
