@@ -373,6 +373,22 @@ margin-bottom: 60px;
     text-align: center;
     height: 100%;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.edu-logo {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.edu-item-text {
+    flex: 1;
+    min-width: 0;
 }
 
 .education-box .edu-item::before {
@@ -469,12 +485,12 @@ margin-bottom: 60px;
 
 .roles-title {
     margin: 0;
-    padding: 14px 22px;
+    padding: 10px 16px;
     border-radius: 999px;
     border: 2px solid rgba(0, 242, 255, 0.45);
     background: rgba(0, 242, 255, 0.12);
     color: #c5faff;
-    font-size: 1rem;
+    font-size: clamp(0.6rem, 2.2vw, 1rem);
     font-weight: 700;
     white-space: nowrap;
     box-shadow: 0 0 30px rgba(0, 242, 255, 0.18);
@@ -522,8 +538,8 @@ margin-bottom: 60px;
 
 .role-node {
     position: absolute;
-    width: 110px;
-    height: 110px;
+    width: clamp(70px, 18%, 110px);
+    height: clamp(70px, 18%, 110px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -539,7 +555,7 @@ margin-bottom: 60px;
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-size: 0.72rem;
+    font-size: clamp(0.5rem, 1.5vw, 0.72rem);
     line-height: 1.35;
     font-weight: 600;
     color: var(--text-secondary);
@@ -554,6 +570,14 @@ margin-bottom: 60px;
     border-color: rgba(0, 242, 255, 0.6);
     color: #c5faff;
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+@media (max-width: 1130px) {
+    .roles-title {
+        white-space: normal;
+        max-width: 140px;
+        line-height: 1.4;
+    }
 }
 
 @media (max-width: 900px) {
@@ -705,6 +729,11 @@ margin-bottom: 60px;
 
     .edu-item .year {
         margin-bottom: 8px;
+    }
+
+    .edu-logo {
+        width: 48px;
+        height: 48px;
     }
 }
 
